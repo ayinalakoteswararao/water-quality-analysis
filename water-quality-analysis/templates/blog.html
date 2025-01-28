@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Water Quality Analysis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #00acc1;
+            --accent-color: #43a047;
+            --background-color: #e3f2fd;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-color: #1a237e;
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--background-color), #bbdefb);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 2rem;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        .blog-title {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .blog-excerpt {
+            color: #37474f;
+            font-size: 1rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 3rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            color: #546e7a;
+            font-size: 1.1rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            margin: 2rem auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-top: 1rem;
+                padding: 0 15px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
+            .blog-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main-content">
+        <header class="page-header">
+            <div class="header-icons">
+                <i class="fas fa-water header-icon"></i>
+                <i class="fas fa-flask header-icon"></i>
+                <i class="fas fa-leaf header-icon"></i>
+            </div>
+            <h1 class="header-title">Water Quality Analysis Blog</h1>
+            <p class="header-subtitle">Discover insights about water quality and environmental protection</p>
+        </header>
+
+        <div class="blog-grid">
+            {% for post in posts %}
+            <article class="blog-card">
+                <div class="card-content">
+                    <i class="fas {{ post.icon }} card-icon"></i>
+                    <h2 class="blog-title">{{ post.title }}</h2>
+                    <p class="blog-excerpt">{{ post.content }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,56 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, roc_curve, roc_auc_score
+from sklearn import metrics
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+import scipy
+
+# Load the data
+water = pd.read_csv("C:\\Users\\KOTES\\Downloads\\water_potability.csv")
+
+# Preprocessing
+water['ph'] = water['ph'].fillna(water.groupby(['Potability'])['ph'].transform('mean'))
+water['Sulfate'] = water['Sulfate'].fillna(water.groupby(['Potability'])['Sulfate'].transform('mean'))
+water['Trihalomethanes'] = water['Trihalomethanes'].fillna(water.groupby(['Potability'])['Trihalomethanes'].transform('mean'))
+water.drop(3014, inplace=True)
+
+# Transform 'ph' and 'Sulfate' using Box-Cox transformation
+water['ph'], fitted_lambda_ph = scipy.stats.boxcox(water['ph'])
+water['Sulfate'], fitted_lambda_sulfate = scipy.stats.boxcox(water['Sulfate'])
+
+# ... (rest of your preprocessing code)
+
+# Streamlit app
+def main():
+    st.title("Water Quality Prediction App")
+
+    # Display the first few rows of the dataset
+    st.subheader("Dataset Overview")
+    st.dataframe(water.head())
+
+    # Display missing values
+    st.subheader("Missing Values")
+    st.table(water.isnull().sum())
+
+    # Display box plots
+    st.subheader("Box Plots for Water Characteristics")
+    box_fig, box_ax = plt.subplots(3, 3, figsize=(15, 15))
+    box_ax = box_ax.flatten()
+
+    columns = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+
+    for i, col in enumerate(columns):
+        water.boxplot(column=col, ax=box_ax[i])
+
+    box_fig.suptitle("Box Plots for Water Characteristics")
+    st.pyplot(box_fig)
+
+    # ... (rest of your modeling and evaluation code)
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Water Quality Analysis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: #1a237e;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #1a237e, #0d47a1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .member-image {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+        }
+
+        .member-info {
+            text-align: center;
+            width: 100%;
+        }
+
+        .role {
+            color: #2196F3;
+            margin: 10px 0 20px;
+            font-size: 1.2rem;
+        }
+
+        .description {
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .education, .expertise {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        .expertise ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .expertise li {
+            background: #2196F3;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: #1a237e;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #2196F3;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #1a237e, #0d47a1);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+        }
+
+        .back-button i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover i {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .team-member {
+                padding: 20px;
+            }
+
+            .member-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meet Our Team</h1>
+        <p>Lead Developer & Water Quality Expert with extensive experience in environmental engineering.<br>
+        Specializing in developing innovative solutions for water quality analysis and monitoring systems.</p>
+    </header>
+
+    <div class="team-member">
+        <div class="member-image">
+            <img src="{{ member.image }}" alt="{{ member.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="member-info">
+            <h2>{{ member.name }}</h2>
+            <h3 class="role">{{ member.role }}</h3>
+            <div class="description">
+                <p>{{ member.description }}</p>
+            </div>
+            <div class="education">
+                <h4>Education</h4>
+                <p>{{ member.education }}</p>
+            </div>
+            <div class="expertise">
+                <h4>Areas of Expertise</h4>
+                <ul>
+                    {% for skill in member.expertise %}
+                    <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="social-links">
+                <a href="{{ member.social_links.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="{{ member.social_links.github }}" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:{{ member.social_links.email }}"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href="/" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+    </footer>
+</body>
+</html>

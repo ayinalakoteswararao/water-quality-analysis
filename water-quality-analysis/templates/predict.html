@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Prediction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+            --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
+            --input-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            --accent-color: #2196F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--primary-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            background: var(--card-gradient);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #2196F3, #00BCD4);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(45deg, #2196F3, #00BCD4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .form-description {
+            text-align: center;
+            color: #555;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            background: var(--input-gradient);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.15);
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .form-group label i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(33, 150, 243, 0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #333;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(45deg, #2196F3, #00BCD4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .btn i {
+            font-size: 1.3rem;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .home-link:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .home-link {
+                position: static;
+                margin-bottom: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+
+    <div class="container">
+        <h1>Water Quality Analysis</h1>
+        <p class="form-description">
+            Enter the water parameters below for a comprehensive analysis of water quality.
+            Our advanced AI model will evaluate the safety and potability of your water sample.
+        </p>
+
+        <form action="/predict" method="post">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-vial"></i>
+                        pH Level
+                    </label>
+                    <input type="number" step="0.01" name="ph" placeholder="Enter pH (0-14)" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-gem"></i>
+                        Hardness
+                    </label>
+                    <input type="number" step="0.01" name="Hardness" placeholder="Enter hardness level" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-atom"></i>
+                        Total Dissolved Solids
+                    </label>
+                    <input type="number" step="0.01" name="Solids" placeholder="Enter TDS value" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-flask"></i>
+                        Chloramines
+                    </label>
+                    <input type="number" step="0.01" name="Chloramines" placeholder="Enter chloramines level" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-flask-vial"></i>
+                        Sulfate
+                    </label>
+                    <input type="number" step="0.01" name="Sulfate" placeholder="Enter sulfate content" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-bolt"></i>
+                        Conductivity
+                    </label>
+                    <input type="number" step="0.01" name="Conductivity" placeholder="Enter conductivity value" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-leaf"></i>
+                        Organic Carbon
+                    </label>
+                    <input type="number" step="0.01" name="Organic_carbon" placeholder="Enter organic carbon level" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-radiation"></i>
+                        Trihalomethanes
+                    </label>
+                    <input type="number" step="0.01" name="Trihalomethanes" placeholder="Enter trihalomethanes level" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-glasses"></i>
+                        Turbidity
+                    </label>
+                    <input type="number" step="0.01" name="Turbidity" placeholder="Enter turbidity value" required>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" class="btn">
+                    <i class="fas fa-microscope"></i>
+                    Analyze Water Quality
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

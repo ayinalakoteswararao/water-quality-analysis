@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Water Quality Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+            --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
+            --accent-color: #2196F3;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--primary-gradient);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #2196F3, #00BCD4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 20px;
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-card {
+            background: var(--card-gradient);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #2196F3, #00BCD4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1976D2;
+            font-weight: 600;
+        }
+
+        .service-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            margin-top: auto;
+            list-style: none;
+            text-align: left;
+            padding: 20px 0 0;
+        }
+
+        .service-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+        }
+
+        .service-features li i {
+            color: #4CAF50;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #2196F3, #00BCD4);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .back-button i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover i {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                padding: 10px;
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto 40px;
+            }
+
+            .container {
+                padding: 20px 10px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Our Water Quality Services</h1>
+            <p>Comprehensive water analysis and treatment solutions for your safety and peace of mind</p>
+        </header>
+
+        <div class="services-grid" id="services-grid">
+            <!-- Services will be dynamically added here -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href="/" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+    </footer>
+
+    <script>
+        // Define all services
+        const allServices = [
+            {
+                icon: 'microscope',
+                title: 'Water Quality Testing',
+                description: 'Professional analysis of your water quality using advanced technology and expert knowledge.',
+                features: [
+                    'Comprehensive chemical analysis',
+                    'Bacterial contamination testing',
+                    'Detailed report generation',
+                    'Expert recommendations'
+                ]
+            },
+            {
+                icon: 'filter',
+                title: 'Water Treatment Solutions',
+                description: 'Customized treatment plans to improve and maintain your water quality.',
+                features: [
+                    'Filtration system installation',
+                    'Water softening solutions',
+                    'UV purification systems',
+                    'Regular maintenance'
+                ]
+            },
+            {
+                icon: 'flask',
+                title: 'Industrial Water Analysis',
+                description: 'Specialized testing and treatment solutions for industrial applications.',
+                features: [
+                    'Process water analysis',
+                    'Cooling system testing',
+                    'Wastewater evaluation',
+                    'Compliance monitoring'
+                ]
+            },
+            {
+                icon: 'home',
+                title: 'Residential Services',
+                description: 'Complete water quality solutions for your home and family.',
+                features: [
+                    'Home water testing',
+                    'Water softener installation',
+                    'Drinking water systems',
+                    'Regular maintenance'
+                ]
+            },
+            {
+                icon: 'clipboard-check',
+                title: 'Compliance Testing',
+                description: 'Ensure your water meets all regulatory requirements and standards.',
+                features: [
+                    'Regulatory compliance',
+                    'Quality certification',
+                    'Documentation support',
+                    'Regular monitoring'
+                ]
+            },
+            {
+                icon: 'phone-alt',
+                title: 'Consultation Services',
+                description: 'Expert advice and guidance for all your water quality needs.',
+                features: [
+                    'Professional consultation',
+                    'Custom solution design',
+                    'Cost analysis',
+                    'Implementation support'
+                ]
+            }
+        ];
+
+        // Function to shuffle array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Function to create service card HTML
+        function createServiceCard(service) {
+            return `
+                <div class="service-card">
+                    <i class="fas fa-${service.icon} service-icon"></i>
+                    <h2 class="service-title">${service.title}</h2>
+                    <p class="service-description">${service.description}</p>
+                    <ul class="service-features">
+                        ${service.features.map(feature => `
+                            <li><i class="fas fa-check-circle"></i> ${feature}</li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        // Get services container
+        const servicesGrid = document.getElementById('services-grid');
+
+        // Get 3 random services and display them
+        const randomServices = shuffleArray([...allServices]).slice(0, 3);
+        servicesGrid.innerHTML = randomServices.map(createServiceCard).join('');
+    </script>
+</body>
+</html>
